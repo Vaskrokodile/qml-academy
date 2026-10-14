@@ -1,0 +1,122 @@
+/* ============================================================
+   Rank gems — animated SVG insignia per tier.
+   .rgem gets --gc (gem color) + size inline from components.js.
+   ============================================================ */
+
+.rgem {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+}
+.rgem svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+.rgem-letter {
+  position: absolute;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 34%;
+  color: rgba(10, 10, 14, .68);
+  text-shadow: 0 1px 0 rgba(255,255,255,.35);
+  pointer-events: none;
+}
+.rgem-bronze .rgem-letter,
+.rgem-master .rgem-letter,
+.rgem-grandmaster .rgem-letter { color: rgba(255,255,255,.85); text-shadow: none; }
+
+/* ---------- shared parts ---------- */
+.rgem-halo {
+  fill: none;
+  stroke: var(--gc);
+  stroke-width: .9;
+  stroke-dasharray: 3 4;
+  opacity: .45;
+  transform-origin: 24px 24px;
+  animation: rgem-spin 14s linear infinite;
+}
+.rgem-halo.h2 {
+  stroke-dasharray: 1.5 5;
+  opacity: .25;
+  animation-duration: 22s;
+  animation-direction: reverse;
+}
+.rgem-body {
+  fill: var(--gc);
+  fill-opacity: .92;
+  stroke: rgba(255,255,255,.55);
+  stroke-width: .7;
+  stroke-linejoin: round;
+}
+.rgem-fac {
+  fill: none;
+  stroke: rgba(0,0,0,.28);
+  stroke-width: .55;
+  stroke-linejoin: round;
+}
+.rgem-facl { fill: rgba(255,255,255,.30); stroke: none; }
+.rgem-facd { fill: rgba(0,0,0,.20); stroke: none; }
+.rgem-hl   { fill: rgba(255,255,255,.5); stroke: none; }
+.rgem-rays path {
+  stroke: var(--gc);
+  stroke-width: 1;
+  stroke-linecap: round;
+  opacity: .5;
+  animation: rgem-rays 2.6s ease-in-out infinite alternate;
+}
+.rgem-orb { transform-origin: 24px 24px; }
+.rgem-orbp { fill: var(--gc); opacity: .95; }
+.rgem-orb.o1 { animation: rgem-spin 3.4s linear infinite; }
+.rgem-orb.o2 { animation: rgem-spin 5.2s linear infinite reverse; }
+.rgem-orb.o3 { animation: rgem-spin 7s linear infinite; }
+.rgem-shine {
+  fill: rgba(255,255,255,.34);
+  stroke: none;
+  transform-origin: 24px 24px;
+  animation: rgem-spin 4.5s linear infinite;
+}
+.rgem-tk {
+  fill: #fff;
+  opacity: 0;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+.rgem-tk.tk1 { animation: rgem-twinkle 2.8s ease-in-out infinite; }
+.rgem-tk.tk2 { animation: rgem-twinkle 2.8s ease-in-out 1.4s infinite; }
+
+/* ---------- per-tier flavor ---------- */
+.rgem-bronze .rgem-halo.h2 { display: none; }
+.rgem-silver svg,
+.rgem-platinum svg,
+.rgem-emerald svg { animation: rgem-pulse 3.2s ease-in-out infinite; }
+.rgem-master svg,
+.rgem-grandmaster svg,
+.rgem-tesla svg { animation: rgem-pulse 2.6s ease-in-out infinite; }
+
+.rgem-emerald svg { filter: drop-shadow(0 0 5px rgba(74,222,128,.55)); }
+.rgem-master svg { filter: drop-shadow(0 0 6px rgba(183,140,255,.6)); }
+.rgem-grandmaster svg { filter: drop-shadow(0 0 7px rgba(255,122,184,.65)); }
+.rgem-tesla svg { filter: drop-shadow(0 0 9px rgba(255,255,255,.8)); }
+.rgem-hot .rgem-body { fill-opacity: 1; }
+.rgem-hot .rgem-halo { stroke-dasharray: 2 3; opacity: .8; animation-duration: 8s; }
+.rgem-hot .rgem-letter { color: rgba(10,10,14,.75); }
+
+/* ---------- keyframes ---------- */
+@keyframes rgem-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes rgem-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+@keyframes rgem-twinkle {
+  0%, 100% { opacity: 0; transform: scale(.4) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.15) rotate(45deg); }
+}
+@keyframes rgem-rays {
+  from { opacity: .15; }
+  to { opacity: .7; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rgem * { animation: none !important; }
+}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>QML Academy — restore</title>
+<style>
+body{background:#0b0b0e;color:#e8e8ee;font-family:ui-sans-serif,system-ui;display:grid;place-items:center;height:100vh;margin:0}
+.card{background:#14141a;border:1px solid #26262e;border-radius:14px;padding:32px;max-width:440px;text-align:center}
+b{color:#9d8cff}p{color:#a9a9b4;font-size:14px;line-height:1.5}a{color:#9d8cff}
+</style></head><body>
+<div class="card">
+  <h2>Progress restored</h2>
+  <p>Your QML Academy progress (≈ <b>2505 MMR</b>, Ruby II) has been written back to localStorage.</p>
+  <p><a href="/">Continue to QML Academy →</a></p>
+  <p style="font-size:12px">Redirecting in 2s…</p>
+</div>
+<script src="assets/js/restore-data.js"></script>
+<script>
+try {
+  if (!window.QML_RESTORE) throw new Error('restore-data.js missing');
+  localStorage.setItem("qml-academy-v1", JSON.stringify(window.QML_RESTORE));
+  setTimeout(() => location.replace("/"), 2000);
+} catch (e) {
+  document.querySelector("h2").textContent = "Restore failed";
+  document.querySelector("p").textContent = String(e);
+}
+</script>
+</body></html>

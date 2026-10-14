@@ -1,0 +1,126 @@
+/* ============================================================
+   Definitions — glossary grid, search, domain groups.
+   Quiz/session chrome reuses .qz-* from quiz.css.
+   ============================================================ */
+
+/* ---------- related study cards ---------- */
+.def-related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+  margin-top: 10px;
+}
+.def-rel {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  color: var(--text-3);
+}
+.def-rel .crs-icon { flex: 0 0 auto; }
+.def-rel-txt { flex: 1; min-width: 0; }
+.def-rel-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+.def-rel .muted { font-size: 12px; }
+
+/* ---------- glossary tools ---------- */
+.def-tools { margin: 14px 0 6px; }
+.def-search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 14px;
+  height: 42px;
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-3);
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+.def-search-wrap:focus-within {
+  border-color: var(--border-2);
+  color: var(--text-2);
+}
+.def-search {
+  flex: 1;
+  background: none;
+  border: 0;
+  outline: none;
+  color: var(--text);
+  font-size: 14px;
+}
+.def-search::placeholder { color: var(--text-3); }
+.def-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 12px;
+}
+
+/* ---------- domain groups ---------- */
+.def-domain { margin-top: 22px; }
+.def-domain-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.def-domain-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: .02em;
+}
+.def-domain-head .muted { font-size: 12px; }
+.def-domain-head .tag { margin-left: auto; }
+
+/* ---------- symbol cards ---------- */
+.def-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+  gap: 10px;
+}
+.def-sym {
+  padding: 14px 16px;
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  transition: transform var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out);
+}
+.def-sym:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-2);
+}
+.def-sym-tex {
+  font-size: 19px;
+  line-height: 1.3;
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+.def-sym-name {
+  font-weight: 600;
+  font-size: 13.5px;
+  margin-bottom: 3px;
+}
+.def-sym-desc {
+  font-size: 12.5px;
+  color: var(--text-2);
+  line-height: 1.45;
+}
+.def-sym-desc .katex { font-size: 1.05em; }
+
+@media (max-width: 640px) {
+  .def-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  .def-rel { padding: 13px 14px; }
+}
